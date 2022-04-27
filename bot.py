@@ -1,5 +1,5 @@
 from warnings import simplefilter
-import discord, random
+import discord, functions
 
 client = discord.Client()
 
@@ -16,13 +16,19 @@ async def on_message(message):
 	if message.author == client.user:
 		return
 
-	message_command = message.content.split(" ")[0]
-	message_content= message.content.split(" ")[1]
+	result = functions.parse_message(message.content)
 
+	if (result != None):
+		await message.channel.send(f"@{message.author} rolled: {result}")
+	else:
+		print("Debug: Empty Result")
 	
-	await message.channel.send("Hello World")
 
+
+f = open("credentials.txt", "r")
+token = f.readline()
+f.close()
 
 
 # Runs the client.
-#client.run(#Needs Token)
+client.run(token)
