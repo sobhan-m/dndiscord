@@ -1,5 +1,7 @@
 from warnings import simplefilter
-import discord, functions
+import discord, functions, os
+from dotenv import load_dotenv
+load_dotenv()
 
 client = discord.Client()
 
@@ -25,10 +27,7 @@ async def on_message(message):
 	
 
 
-f = open("credentials.txt", "r")
-token = f.readline()
-f.close()
-
+token = os.environ.get("BOT_TOKEN")
 
 # Runs the client.
 client.run(token)
