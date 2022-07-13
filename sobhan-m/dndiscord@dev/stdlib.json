@@ -1,0 +1,16 @@
+{
+  "name": "sobhan-m/dndiscord",
+  "timeout": 10000,
+  "connector": false,
+  "events": {
+    "functions/events/discord/command/r.js": {
+      "name": "discord.command",
+      "subtype": {
+        "command": "r"
+      }
+    },
+    "functions/events/discord/message/create.js": {
+      "name": "discord.message.create"
+    }
+  }
+}
