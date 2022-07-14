@@ -86,6 +86,6 @@ const formatRollResults = (rolls) => {
 	return message;
 };
 
-module.exports = convertMessageToRolledResults;
-module.exports = rollDice;
-module.exports = formatRollResults;
+module.exports.convertMessageToRolledResults = convertMessageToRolledResults;
+module.exports.rollDice = rollDice;
+module.exports.formatRollResults = formatRollResults;
