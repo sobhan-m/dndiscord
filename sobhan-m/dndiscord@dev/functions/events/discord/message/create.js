@@ -3,22 +3,12 @@
 const lib = require('lib')({ token: process.env.STDLIB_SECRET_TOKEN });
 
 const roll = require('./roll');
-
-function rollStats() {
-	let scores = executeCommand("4d6");
-	let sum = scores.reduce((a, b) => a + b, 0);
-	let min = Math.min(...scores);
-	let total = sum - min;
-
-	return `Rolls: \`${scores[0]}, ${scores[1]}, ${scores[2]}, ${scores[3]}\`. Total: \`${total}\``;
-}
+const stats = require("./stats");
 
 if (context.params.event.content.match(/^\/r .*/i)) {
 	let messageContent = context.params.event.content.match(/^\/r .*/i);
 
 	console.log(`Message Sent: ${messageContent}`);
-
-
 
 	await lib.discord.channels['@0.3.0'].messages.create({
 		channel_id: context.params.event.channel_id,
@@ -32,7 +22,7 @@ else if (context.params.event.content.match(/^\/rchar7/i)) {
 
 	let message = "";
 	for (let i = 0; i < 7; ++i) {
-		message += `\n${rollStats()}`
+		message += `\n${stats.rollStats()}`
 	}
 
 	await lib.discord.channels['@0.3.0'].messages.create({
@@ -48,7 +38,7 @@ else if (context.params.event.content.match(/^\/rchar/i)) {
 
 	let message = "";
 	for (let i = 0; i < 6; ++i) {
-		message += `\n${rollStats()}`
+		message += `\n${stats.rollStats()}`
 	}
 
 	await lib.discord.channels['@0.3.0'].messages.create({
