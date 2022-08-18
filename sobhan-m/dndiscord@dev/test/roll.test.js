@@ -32,3 +32,22 @@ describe("Argument Splitting Tests", () => {
 		});
 	});
 });
+
+describe("Option Extracting Tests", () => {
+	it("should be []", () => {
+		expect(Roll.extractOptions("1d20")).to.eql([]);
+	});
+
+	it("should be [a]", () => {
+		expect(Roll.extractOptions("1d20:a")).to.eql(["a"]);
+	});
+
+	it("should be [d]", () => {
+		expect(Roll.extractOptions("1d20:d")).to.eql(["d"]);
+	});
+
+	it("should be [a, rr1,2]", () => {
+		expect(Roll.extractOptions("1d20:a:rr1,2")).to.eql(["a", "rr1,2"]);
+	});
+
+});

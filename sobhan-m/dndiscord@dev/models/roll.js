@@ -1,9 +1,10 @@
 
 module.exports = class Roll {
 
-	constructor(command, argument) {
-		this.command = command;
-		this.arg = argument;
+	constructor(roll, operator) {
+		this.roll = roll;
+		this.operator = operator;
+		this.options = extractOptions(roll);
 	}
 
 	static formatArgument(arg) {
@@ -17,6 +18,11 @@ module.exports = class Roll {
 		}
 
 		return {rolls: rolls, operators: operators};
+	}
+
+	static extractOptions(roll) {
+		let options = roll.split(":").slice(1);
+		return options;
 	}
 
 };
