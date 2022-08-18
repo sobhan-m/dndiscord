@@ -51,3 +51,33 @@ describe("Option Extracting Tests", () => {
 	});
 
 });
+
+describe("Dice Number And Type Tests", () => {
+	it("should be {1, 1}", () => {
+		expect(Roll.extractDiceData("1")).to.eql({
+			diceNum: 1,
+			diceType: 1
+		});
+	});
+
+	it("should be {15, 1}", () => {
+		expect(Roll.extractDiceData("15")).to.eql({
+			diceNum: 15,
+			diceType: 1
+		});
+	});
+
+	it("should be {1, 20}", () => {
+		expect(Roll.extractDiceData("1d20")).to.eql({
+			diceNum: 1,
+			diceType: 20
+		});
+	});
+
+	it("should be {10, 6}", () => {
+		expect(Roll.extractDiceData("10d6")).to.eql({
+			diceNum: 10,
+			diceType: 6
+		});
+	});
+})

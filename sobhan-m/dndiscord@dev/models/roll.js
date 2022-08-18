@@ -5,6 +5,11 @@ module.exports = class Roll {
 		this.roll = roll;
 		this.operator = operator;
 		this.options = extractOptions(roll);
+
+		const dice = extractDiceData(roll);
+
+		this.diceNum = dice.diceNum;
+		this.diceType = dice.diceType;
 	}
 
 	static formatArgument(arg) {
@@ -23,6 +28,27 @@ module.exports = class Roll {
 	static extractOptions(roll) {
 		let options = roll.split(":").slice(1);
 		return options;
+	}
+
+	static extractDiceData(roll) {
+		let optionlessRoll = roll.split(":")[0];
+
+		const dice = {};
+		
+		if (optionlessRoll.includes("d"))
+		{
+			let diceInfoArray = optionlessRoll.split("d");
+			dice.diceNum = parseInt(diceInfoArray[0]);
+			dice.diceType = parseInt(diceInfoArray[1]);
+		}
+		else
+		{
+			dice.diceNum = parseInt(optionlessRoll);
+			dice.diceType = 1;
+		}
+
+		return dice;
+
 	}
 
 };
