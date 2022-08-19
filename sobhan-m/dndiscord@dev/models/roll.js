@@ -50,6 +50,9 @@ module.exports = class Roll {
 
 		return dice;
 
+	static randomize(diceType)
+	{
+		return Math.floor(Math.random() * diceType + 1);
 	}
 
 };

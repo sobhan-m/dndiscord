@@ -87,4 +87,36 @@ describe("Dice Number And Type Tests", () => {
 			diceType: 20
 		});
 	});
+});
+
+describe("Randomize Tests", () => {
+	it("should be between 1 and 4", () => {
+		expect(Roll.randomize(4)).to.be.within(1,4);
+	});
+
+	it("should be between 1 and 6", () => {
+		expect(Roll.randomize(6)).to.be.within(1,6);
+	});
+
+	it("should be between 1 and 8", () => {
+		expect(Roll.randomize(8)).to.be.within(1,8);
+	});
+
+	it("should be between 1 and 10", () => {
+		expect(Roll.randomize(10)).to.be.within(1,10);
+	});
+
+	it("should be between 1 and 12", () => {
+		expect(Roll.randomize(12)).to.be.within(1,12);
+	});
+
+	it("should be between 1 and 20", () => {
+		expect(Roll.randomize(20)).to.be.within(1,20);
+	});
+
+	it("should be between 1 and 100", () => {
+		expect(Roll.randomize(100)).to.be.within(1,100);
+	});
+
+});
 })
