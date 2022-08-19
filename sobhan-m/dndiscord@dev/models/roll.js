@@ -49,6 +49,33 @@ module.exports = class Roll {
 		}
 
 		return dice;
+	}
+
+	static rollDice(roll)
+	{
+		let message = roll.operator;
+		let values = [];
+		let total = 0;
+
+		if (roll.diceType == 1)
+		{
+			message += String(roll.diceNum);
+			total = roll.diceNum;
+			return {message: message, total: total};
+		}
+		
+		values.push(Roll.randomize(roll.diceType));
+		message += "(" + String(values[0]);
+		for (let i = 1; i < roll.diceNum; ++i)
+		{
+			values.push(Roll.randomize(roll.diceType));
+			message += "+" + String(values[i]);
+		}
+		message += ")";
+		total = values.reduce((accumulatedValue, currentValue) => {return accumulatedValue + currentValue;});
+		
+		return {message: message, total: total};
+	}
 
 	static randomize(diceType)
 	{

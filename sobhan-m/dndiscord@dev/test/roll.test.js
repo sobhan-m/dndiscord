@@ -119,4 +119,35 @@ describe("Randomize Tests", () => {
 	});
 
 });
-})
+
+describe("Dice Roll Tests", () => {
+	it("should be 1", () => {
+		expect(Roll.rollDice(new Roll("1", "+"))).to.eql({
+			total: 1,
+			message: "+1"
+		});
+	});
+
+	it("should be -6", () => {
+		expect(Roll.rollDice(new Roll("6", "-"))).to.eql({
+			total: 6,
+			message: "-6"
+		});
+	})
+
+	it("should be like +(\d)", () => {
+		expect(Roll.rollDice(new Roll("1d4", "+")).message).to.match(/^\+\(\d\)$/);
+	});
+
+	it("should be like +(\d+\d)", () => {
+		expect(Roll.rollDice(new Roll("2d4", "+")).message).to.match(/^\+\(\d\+\d\)$/);
+	});
+
+	it("should be like +(\d+\d+\d)", () => {
+		expect(Roll.rollDice(new Roll("3d4", "+")).message).to.match(/^\+\(\d\+\d\+\d\)$/);
+	});
+
+	it("should be like -(\d+\d+\d)", () => {
+		expect(Roll.rollDice(new Roll("3d4", "-")).message).to.match(/^-\(\d\+\d\+\d\)$/);
+	});
+});
