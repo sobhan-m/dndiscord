@@ -80,4 +80,11 @@ describe("Dice Number And Type Tests", () => {
 			diceType: 6
 		});
 	});
+
+	it("should be {1, 20}", () => {
+		expect(Roll.extractDiceData("d20")).to.eql({
+			diceNum: 1,
+			diceType: 20
+		});
+	});
 })

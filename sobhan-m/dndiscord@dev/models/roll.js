@@ -38,7 +38,8 @@ module.exports = class Roll {
 		if (optionlessRoll.includes("d"))
 		{
 			let diceInfoArray = optionlessRoll.split("d");
-			dice.diceNum = parseInt(diceInfoArray[0]);
+
+			dice.diceNum = diceInfoArray[0] === "" ? 1 : parseInt(diceInfoArray[0]);
 			dice.diceType = parseInt(diceInfoArray[1]);
 		}
 		else
