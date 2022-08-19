@@ -4,9 +4,9 @@ module.exports = class Roll {
 	constructor(roll, operator) {
 		this.roll = roll;
 		this.operator = operator;
-		this.options = extractOptions(roll);
+		this.options = Roll.extractOptions(roll);
 
-		const dice = extractDiceData(roll);
+		const dice = Roll.extractDiceData(roll);
 
 		this.diceNum = dice.diceNum;
 		this.diceType = dice.diceType;
