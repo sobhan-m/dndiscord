@@ -21,3 +21,8 @@ with only one space after the command word and no spaces between the dice rolls.
 - **Dice Number:** `1` in `1d20:a`
 - **Dice Type:** `d20` in `1d20:a`
 - **Option:** `:a` in `1d20:a`
+
+## Feature Roadmap
+- [ ] Options: AdvantaRework Backenddvantage, Keep Highest n, Keep Lowest n, Reroll n
+- [ ] Vicious Mockery Generator
+- [ ] Magic DM Ball
