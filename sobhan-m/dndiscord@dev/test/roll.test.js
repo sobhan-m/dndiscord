@@ -151,6 +151,10 @@ describe("Dice Roll Tests", () => {
 		expect(Roll.rollDice(new Roll("3d4", "-")).message).to.match(/^-\(\d\+\d\+\d\)$/);
 	});
 
+	it("should be like -(\d+\d+\d)", () => {
+		expect(Roll.rollDice(new Roll("3d12", "-")).message).to.match(/^-\(\d+\+\d+\+\d+\)$/);
+	});
+
 	it("should be within 1,4", () => {
 		expect(Roll.rollDice(new Roll("1d4", "+")).total).to.be.within(1, 4);
 	});
