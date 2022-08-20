@@ -23,6 +23,6 @@ with only one space after the command word and no spaces between the dice rolls.
 - **Option:** `:a` in `1d20:a`
 
 ## Feature Roadmap
-- [ ] Options: AdvantaRework Backenddvantage, Keep Highest n, Keep Lowest n, Reroll n
+- [ ] Options: Advantage, Disadvantage, Keep Highest n, Keep Lowest n, Reroll n
 - [ ] Vicious Mockery Generator
 - [ ] Magic DM Ball
