@@ -10,6 +10,13 @@ module.exports = class Roll {
 
 		this.diceNum = dice.diceNum;
 		this.diceType = dice.diceType;
+
+		const diceRoll = Roll.rollDice(this);
+
+		this.message = diceRoll.message;
+		this.total = diceRoll.total;
+
+		console.log(`Message: ${this.message} = ${this.total}`);
 	}
 
 	static formatArgument(arg) {
@@ -73,6 +80,11 @@ module.exports = class Roll {
 		}
 		message += ")";
 		total = values.reduce((accumulatedValue, currentValue) => {return accumulatedValue + currentValue;});
+
+		if (roll.operator === "-")
+		{
+			total = total * -1;
+		}
 		
 		return {message: message, total: total};
 	}

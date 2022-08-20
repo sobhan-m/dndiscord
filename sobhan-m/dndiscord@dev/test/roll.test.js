@@ -142,12 +142,28 @@ describe("Dice Roll Tests", () => {
 	it("should be like +(\d+\d)", () => {
 		expect(Roll.rollDice(new Roll("2d4", "+")).message).to.match(/^\+\(\d\+\d\)$/);
 	});
-
+	
 	it("should be like +(\d+\d+\d)", () => {
 		expect(Roll.rollDice(new Roll("3d4", "+")).message).to.match(/^\+\(\d\+\d\+\d\)$/);
 	});
-
+	
 	it("should be like -(\d+\d+\d)", () => {
 		expect(Roll.rollDice(new Roll("3d4", "-")).message).to.match(/^-\(\d\+\d\+\d\)$/);
+	});
+
+	it("should be within 1,4", () => {
+		expect(Roll.rollDice(new Roll("1d4", "+")).total).to.be.within(1, 4);
+	});
+	
+	it("should be within 2,8", () => {
+		expect(Roll.rollDice(new Roll("2d4", "+")).total).to.be.within(2,8);
+	});
+
+	it("should be within 3,12", () => {
+		expect(Roll.rollDice(new Roll("3d4", "+")).total).to.be.within(3,12);
+	});
+
+	it("should be within -12,-3", () => {
+		expect(Roll.rollDice(new Roll("3d4", "-")).total).to.be.within(-12,-3);
 	});
 });
