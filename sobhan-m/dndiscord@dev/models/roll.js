@@ -15,8 +15,6 @@ module.exports = class Roll {
 
 		this.message = diceRoll.message;
 		this.total = diceRoll.total;
-
-		console.log(`Message: ${this.message} = ${this.total}`);
 	}
 
 	static formatArgument(arg) {
@@ -64,6 +62,7 @@ module.exports = class Roll {
 		let values = [];
 		let total = 0;
 
+		// No need to roll d1.
 		if (roll.diceType == 1)
 		{
 			message += String(roll.diceNum);
@@ -71,6 +70,7 @@ module.exports = class Roll {
 			return {message: message, total: total};
 		}
 		
+		// Rolling dice and creating message.
 		values.push(Roll.randomize(roll.diceType));
 		message += "(" + String(values[0]);
 		for (let i = 1; i < roll.diceNum; ++i)
@@ -81,6 +81,7 @@ module.exports = class Roll {
 		message += ")";
 		total = values.reduce((accumulatedValue, currentValue) => {return accumulatedValue + currentValue;});
 
+		// Attaching correct sign.
 		if (roll.operator === "-")
 		{
 			total = total * -1;
