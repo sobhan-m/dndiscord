@@ -50,4 +50,19 @@ module.exports = class Option {
 		return {message: finalMessage, total: finalTotal};
 	}
 
+	static reroll(roll)
+	{
+		// TODO: Implement this.
+	}
+
+	static keepHighest(roll)
+	{
+		// TODO: Implement this.
+	}
+
+	static keepLowest(roll)
+	{
+		// TODO: Implement this.
+	}
+
 }
