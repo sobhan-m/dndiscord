@@ -12,19 +12,33 @@ module.exports = class Option {
 
 		let finalMessage;
 		let finalTotal;
+		let lesserMessage;
+		let greaterMessage;
 
 		if (roll1Results.total >= roll2Results.total) 
 		{
 			finalMessage = roll1Results.message + DiscordMessage.strikethrough(roll2Results.message);
+			greaterMessage = roll1Results.message;
+			lesserMessage = roll2Results.message;
 		}
 		else
 		{
 			finalMessage = DiscordMessage.strikethrough(roll1Results.message) + roll2Results.message;
+			greaterMessage = roll2Results.message;
+			lesserMessage = roll1Results.message;
 		}
 
 		finalTotal = Math.max(roll1Results.total, roll2Results.total);
+		let lesserTotal = Math.min(roll1Results.total, roll2Results.total);
 		
-		return {message: finalMessage, total: finalTotal};
+		return { 
+			message: finalMessage, 
+			total: finalTotal, 
+			greaterMessage: greaterMessage, 
+			lesserMessage: lesserMessage, 
+			lesserTotal: lesserTotal, 
+			greaterTotal: finalTotal 
+		};
 	}
 
 	static disadvantage(roll) 
@@ -35,19 +49,33 @@ module.exports = class Option {
 
 		let finalMessage;
 		let finalTotal;
+		let lesserMessage;
+		let greaterMessage;
 
 		if (roll1Results.total <= roll2Results.total) 
 		{
 			finalMessage = roll1Results.message + DiscordMessage.strikethrough(roll2Results.message);
+			greaterMessage = roll2Results.message;
+			lesserMessage = roll1Results.message;
 		}
 		else
 		{
 			finalMessage = DiscordMessage.strikethrough(roll1Results.message) + roll2Results.message;
+			greaterMessage = roll1Results.message;
+			lesserMessage = roll2Results.message;
 		}
 
 		finalTotal = Math.min(roll1Results.total, roll2Results.total);
+		let greaterTotal = Math.max(roll1Results.total, roll2Results.total);
 		
-		return {message: finalMessage, total: finalTotal};
+		return { 
+			message: finalMessage, 
+			total: finalTotal, 
+			greaterMessage: greaterMessage, 
+			lesserMessage: lesserMessage, 
+			lesserTotal: finalTotal, 
+			greaterTotal: greaterTotal 
+		};
 	}
 
 	static reroll(roll)
