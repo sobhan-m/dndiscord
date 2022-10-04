@@ -1,3 +1,5 @@
+const Roll = require('./roll');
+
 
 module.exports = class Message {
 

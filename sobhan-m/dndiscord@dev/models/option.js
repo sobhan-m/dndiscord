@@ -83,14 +83,60 @@ module.exports = class Option {
 		// TODO: Implement this.
 	}
 
-	static keepHighest(roll)
+	static keepHighest(roll, n)
 	{
-		// TODO: Implement this.
+		let diceType = roll.diceType;
+		let diceNum = roll.diceNum;
+
+		const rolls = [];
+		let message = "";
+
+		for (let i = 0; i < diceNum; ++i)
+		{
+			let value = Roll.randomize(diceType);
+			rolls.push(value);
+			if (i == 0)
+			{
+				message += value;
+			}
+			else
+			{
+				message += `+${value}`;
+			}
+			
+		}
+
+		let total = rolls.sort((a,b) => {return a-b}).slice(-n).reduce((a, c) => {return a + c;});
+
+		return {message: message, total: total}
 	}
 
-	static keepLowest(roll)
+	static keepLowest(roll, n)
 	{
-		// TODO: Implement this.
+		let diceType = roll.diceType;
+		let diceNum = roll.diceNum;
+
+		const rolls = [];
+		let message = "";
+
+		for (let i = 0; i < diceNum; ++i)
+		{
+			let value = Roll.randomize(diceType);
+			rolls.push(value);
+			if (i == 0)
+			{
+				message += value;
+			}
+			else
+			{
+				message += `+${value}`;
+			}
+			
+		}
+
+		let total = rolls.sort((a,b) => {return a-b}).slice(0,n).reduce((a, c) => {return a + c;});
+
+		return {message: message, total: total}
 	}
 
 }

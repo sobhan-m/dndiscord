@@ -19,3 +19,19 @@ describe("Disadvantage Tests", () => {
 		expect(results.total).to.be.lessThanOrEqual(results.greaterTotal);
 	});
 });
+
+describe("Keep Highest Tests", () => {
+	// I don't know how to test things that are meant to be random.
+
+	it("should keep highest 2", () => {
+		console.log(Option.keepHighest(new Roll("4d4", "+"), 2));
+	})
+});
+
+describe("Keep Lowest Tests", () => {
+	// I don't know how to test things that are meant to be random.
+
+	it("should keep lowest 2", () => {
+		console.log(Option.keepLowest(new Roll("4d4", "+"), 2));
+	})
+});
