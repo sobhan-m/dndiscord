@@ -6,6 +6,11 @@ module.exports = class Option {
 		return roll.split(":").slice(1)[0];
 	}
 
+	static extractKeepNumber(option)
+	{
+		return parseInt(option.substring(2));
+	}
+
 	static advantage(dice) 
 	{
 		let roll1 = Dice.rollDice(dice);

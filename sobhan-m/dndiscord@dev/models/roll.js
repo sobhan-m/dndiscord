@@ -30,12 +30,12 @@ module.exports = class Roll {
 		}
 		else if (roll.option.match(/^kh\d+/))
 		{
-			let n = parseInt(roll.option.substring(2));
+			let n = Option.extractKeepNumber(roll.option);
 			roll.results = Option.keepHighest(roll.dice, n);
 		}
 		else if (roll.option.match(/^kl\d+/))
 		{
-			let n = parseInt(roll.option.substring(2));
+			let n = Option.extractKeepNumber(roll.option);
 			roll.results = Option.keepLowest(roll.dice, n);
 		}
 		else

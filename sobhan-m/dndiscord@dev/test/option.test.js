@@ -75,3 +75,21 @@ describe("Option Extracting Tests", () => {
 	});
 
 });
+
+describe("Extracting Keep Number Tests", () => {
+	it("should be 1", () => {
+		expect(Option.extractKeepNumber("kh1")).to.eql(1);
+	});
+
+	it("should be 2", () => {
+		expect(Option.extractKeepNumber("kh2")).to.eql(2);
+	});
+
+	it("should be 3", () => {
+		expect(Option.extractKeepNumber("kl3")).to.eql(3);
+	});
+
+	it("should be 4", () => {
+		expect(Option.extractKeepNumber("kl4")).to.eql(4);
+	});
+});
