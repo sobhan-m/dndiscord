@@ -3,7 +3,6 @@ const Option = require('../models/option');
 const Dice = require('../models/dice');
 const assert = require('assert');
 const chai = require('chai');
-const exp = require('constants');
 const expect = chai.expect;
 
 describe("Advantage Tests", () => {

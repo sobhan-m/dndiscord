@@ -1,12 +1,11 @@
-const Roll = require('./roll');
-const DiscordMessage = require('./discord-message');
+const Dice = require('./dice');
 
 module.exports = class Option {
 
 	static advantage(dice) 
 	{
-		let roll1 = Roll.rollDice(dice);
-		let roll2 = Roll.rollDice(dice);
+		let roll1 = Dice.rollDice(dice);
+		let roll2 = Dice.rollDice(dice);
 
 		let total;
 		let values
@@ -32,8 +31,8 @@ module.exports = class Option {
 
 	static disadvantage(dice) 
 	{
-		let roll1 = Roll.rollDice(dice);
-		let roll2 = Roll.rollDice(dice);
+		let roll1 = Dice.rollDice(dice);
+		let roll2 = Dice.rollDice(dice);
 
 		let total;
 		let values
@@ -68,7 +67,7 @@ module.exports = class Option {
 
 		for (let i = 0; i < dice.diceNum; ++i)
 		{
-			values.push(Roll.randomize(dice.diceType));
+			values.push(Dice.randomize(dice.diceType));
 		}
 
 		let total = values.sort((a,b) => {return a-b}).slice(-n).reduce((a, c) => {return a + c;});
@@ -82,7 +81,7 @@ module.exports = class Option {
 
 		for (let i = 0; i < dice.diceNum; ++i)
 		{
-			values.push(Roll.randomize(dice.diceType));
+			values.push(Dice.randomize(dice.diceType));
 		}
 
 		let total = values.sort((a,b) => {return a-b}).slice(0,n).reduce((a, c) => {return a + c;});

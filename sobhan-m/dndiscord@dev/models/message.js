@@ -1,10 +1,11 @@
 const Roll = require('./roll');
+const Dice = require('./dice');
 const Option = require('./option');
 
 const execute = (roll) => {
 	if (roll.option == undefined)
 	{
-		roll.results = Roll.rollDice(roll.dice);
+		roll.results = Dice.rollDice(roll.dice);
 	}
 	else if (roll.option === "a")
 	{
