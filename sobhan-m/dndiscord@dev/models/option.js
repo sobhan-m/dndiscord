@@ -1,6 +1,10 @@
 const Dice = require('./dice');
 
 module.exports = class Option {
+	
+	static extractOptions(roll) {
+		return roll.split(":").slice(1)[0];
+	}
 
 	static advantage(dice) 
 	{

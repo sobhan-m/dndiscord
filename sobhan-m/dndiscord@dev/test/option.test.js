@@ -1,4 +1,3 @@
-const Roll = require('../models/roll');
 const Option = require('../models/option');
 const Dice = require('../models/dice');
 const assert = require('assert');
@@ -56,4 +55,23 @@ describe("Keep Lowest Tests", () => {
 		let results = Option.keepLowest(new Dice(4, 6), 4)
 		expect(results.total).to.equal(results.values[0] + results.values[1] + results.values[2] + results.values[3]);
 	})
+});
+
+describe("Option Extracting Tests", () => {
+	it("should be undefined", () => {
+		expect(Option.extractOptions("1d20")).to.eql(undefined);
+	});
+
+	it("should be a", () => {
+		expect(Option.extractOptions("1d20:a")).to.eql("a");
+	});
+
+	it("should be d", () => {
+		expect(Option.extractOptions("1d20:d")).to.eql("d");
+	});
+
+	it("should be kh1", () => {
+		expect(Option.extractOptions("2d20:kh1")).to.eql("kh1");
+	});
+
 });

@@ -1,11 +1,12 @@
 const Dice = require('./dice');
+const Option = require('./option');
 
 module.exports = class Roll {
 
 	constructor(roll, operator = "+") {
 		this.roll = roll;
 		this.operator = operator;
-		this.option = Roll.extractOptions(roll);
+		this.option = Option.extractOptions(roll);
 		this.dice = Dice.extractDiceData(roll);
 	}
 
@@ -20,9 +21,5 @@ module.exports = class Roll {
 		}
 
 		return {rolls: rolls, operators: operators};
-	}
-
-	static extractOptions(roll) {
-		return roll.split(":").slice(1)[0];
 	}
 };
