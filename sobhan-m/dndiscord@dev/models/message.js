@@ -19,8 +19,8 @@ module.exports = class Message {
 				return this.rollCharacterStats();
 			case "/rhelp":
 				return this.help();
-			case "/rvm":
-				return this.viciousMockery();
+			case "/rinsult":
+				return this.insult();
 			case "/raskdm":
 				return this.askDM();
 			default:
@@ -31,6 +31,16 @@ module.exports = class Message {
 
 	rollDice()
 	{
+		let totalArgument = this.arguments.join("");
+		let {rolls, operators} = Roll.formatArgument(totalArgument);
+		let rollArray = [];
+	
+		for(let i = 0; i <= rolls.length; ++i)
+		{
+			rollArray.push(new Roll(rolls[i], operators[i]));
+		}
+
+		// Roll each one separately?
 
 	}
 
@@ -44,7 +54,7 @@ module.exports = class Message {
 
 	}
 
-	viciousMockery()
+	insult()
 	{
 
 	}

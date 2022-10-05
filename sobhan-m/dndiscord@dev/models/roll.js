@@ -1,20 +1,11 @@
 
 module.exports = class Roll {
 
-	constructor(roll, operator) {
+	constructor(roll, operator = "+") {
 		this.roll = roll;
 		this.operator = operator;
 		this.options = Roll.extractOptions(roll);
-
-		const dice = Roll.extractDiceData(roll);
-
-		this.diceNum = dice.diceNum;
-		this.diceType = dice.diceType;
-
-		const diceRoll = Roll.rollDice(this);
-
-		this.message = diceRoll.message;
-		this.total = diceRoll.total;
+		this.dice = Roll.extractDiceData(roll);
 	}
 
 	static formatArgument(arg) {
@@ -50,44 +41,34 @@ module.exports = class Roll {
 		else
 		{
 			dice.diceNum = parseInt(optionlessRoll);
-			dice.diceType = 1;
+			dice.diceType = "constant";
 		}
 
 		return dice;
 	}
 
-	static rollDice(roll)
+	static rollDice(dice)
 	{
-		let message = roll.operator;
 		let values = [];
 		let total = 0;
 
-		// No need to roll d1.
-		if (roll.diceType == 1)
+		
+		if (dice.diceType !== "constant")
 		{
-			message += String(roll.diceNum);
-			total = roll.diceNum;
-			return {message: message, total: total};
+			for (let i = 0; i < dice.diceNum; ++i)
+			{
+				let value = Roll.randomize(dice.diceType);
+				values.push(value);
+				total += value;
+			}
+		}
+		else
+		{
+			values.push(dice.diceNum);
+			total = dice.diceNum;
 		}
 		
-		// Rolling dice and creating message.
-		values.push(Roll.randomize(roll.diceType));
-		message += "(" + String(values[0]);
-		for (let i = 1; i < roll.diceNum; ++i)
-		{
-			values.push(Roll.randomize(roll.diceType));
-			message += "+" + String(values[i]);
-		}
-		message += ")";
-		total = values.reduce((accumulatedValue, currentValue) => {return accumulatedValue + currentValue;});
-
-		// Attaching correct sign.
-		if (roll.operator === "-")
-		{
-			total = total * -1;
-		}
-		
-		return {message: message, total: total};
+		return {values: values, total: total};
 	}
 
 	static randomize(diceType)

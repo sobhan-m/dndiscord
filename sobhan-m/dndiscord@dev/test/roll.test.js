@@ -1,4 +1,5 @@
 const Roll = require('../models/roll');
+const Dice = require('../models/dice');
 const assert = require('assert');
 const chai = require('chai');
 const expect = chai.expect;
@@ -56,14 +57,14 @@ describe("Dice Number And Type Tests", () => {
 	it("should be {1, 1}", () => {
 		expect(Roll.extractDiceData("1")).to.eql({
 			diceNum: 1,
-			diceType: 1
+			diceType: "constant"
 		});
 	});
 
 	it("should be {15, 1}", () => {
 		expect(Roll.extractDiceData("15")).to.eql({
 			diceNum: 15,
-			diceType: 1
+			diceType: "constant"
 		});
 	});
 
@@ -121,53 +122,15 @@ describe("Randomize Tests", () => {
 });
 
 describe("Dice Roll Tests", () => {
-	it("should be 1", () => {
-		expect(Roll.rollDice(new Roll("1", "+"))).to.eql({
-			total: 1,
-			message: "+1"
-		});
-	});
-
-	it("should be -6", () => {
-		expect(Roll.rollDice(new Roll("6", "-"))).to.eql({
-			total: 6,
-			message: "-6"
-		});
-	})
-
-	it("should be like +(\d)", () => {
-		expect(Roll.rollDice(new Roll("1d4", "+")).message).to.match(/^\+\(\d\)$/);
-	});
-
-	it("should be like +(\d+\d)", () => {
-		expect(Roll.rollDice(new Roll("2d4", "+")).message).to.match(/^\+\(\d\+\d\)$/);
-	});
-	
-	it("should be like +(\d+\d+\d)", () => {
-		expect(Roll.rollDice(new Roll("3d4", "+")).message).to.match(/^\+\(\d\+\d\+\d\)$/);
-	});
-	
-	it("should be like -(\d+\d+\d)", () => {
-		expect(Roll.rollDice(new Roll("3d4", "-")).message).to.match(/^-\(\d\+\d\+\d\)$/);
-	});
-
-	it("should be like -(\d+\d+\d)", () => {
-		expect(Roll.rollDice(new Roll("3d12", "-")).message).to.match(/^-\(\d+\+\d+\+\d+\)$/);
-	});
-
 	it("should be within 1,4", () => {
-		expect(Roll.rollDice(new Roll("1d4", "+")).total).to.be.within(1, 4);
+		expect(Roll.rollDice(new Dice(1,4)).total).to.be.within(1, 4);
 	});
 	
 	it("should be within 2,8", () => {
-		expect(Roll.rollDice(new Roll("2d4", "+")).total).to.be.within(2,8);
+		expect(Roll.rollDice(new Dice(2,4)).total).to.be.within(2,8);
 	});
 
 	it("should be within 3,12", () => {
-		expect(Roll.rollDice(new Roll("3d4", "+")).total).to.be.within(3,12);
-	});
-
-	it("should be within -12,-3", () => {
-		expect(Roll.rollDice(new Roll("3d4", "-")).total).to.be.within(-12,-3);
+		expect(Roll.rollDice(new Dice(3,4)).total).to.be.within(3,12);
 	});
 });

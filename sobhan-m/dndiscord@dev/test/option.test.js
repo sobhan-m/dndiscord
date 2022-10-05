@@ -1,37 +1,60 @@
 const Roll = require('../models/roll');
 const Option = require('../models/option');
+const Dice = require('../models/dice');
 const assert = require('assert');
 const chai = require('chai');
+const exp = require('constants');
 const expect = chai.expect;
 
 describe("Advantage Tests", () => {
 	it("should return greater result", () => {
-		const results = Option.advantage(new Roll("1d20:a", "+"));
-		expect(results.total).to.equal(results.greaterTotal);
-		expect(results.total).to.be.greaterThanOrEqual(results.lesserTotal);
+		const results = Option.advantage(new Dice(1, 20));
+		expect(results.total).to.equal(Math.max(results.roll1.total, results.roll2.total));
 	});
 });
 
 describe("Disadvantage Tests", () => {
 	it("should return lesser result", () => {
-		const results = Option.disadvantage(new Roll("1d20:a", "+"));
-		expect(results.total).to.equal(results.lesserTotal);
-		expect(results.total).to.be.lessThanOrEqual(results.greaterTotal);
+		const results = Option.disadvantage(new Dice(1, 20));
+		expect(results.total).to.equal(Math.min(results.roll1.total, results.roll2.total));
 	});
 });
 
 describe("Keep Highest Tests", () => {
-	// I don't know how to test things that are meant to be random.
+	it("should keep highest 1", () => {
+		let results = Option.keepHighest(new Dice(4, 4), 1)
+		expect(results.total).to.equal(results.values[results.values.length - 1]);
+	});
 
 	it("should keep highest 2", () => {
-		console.log(Option.keepHighest(new Roll("4d4", "+"), 2));
-	})
+		let results = Option.keepHighest(new Dice(4, 4), 2)
+		expect(results.total).to.equal(results.values[results.values.length - 1] + results.values[results.values.length - 2]);
+	});
+
+	it("should keep highest 4", () => {
+		let results = Option.keepHighest(new Dice(4, 6), 4)
+		expect(results.total).to.equal(
+			results.values[results.values.length - 1] 
+			+ results.values[results.values.length - 2] 
+			+ results.values[results.values.length - 3] 
+			+ results.values[results.values.length - 4]
+		);
+	});
 });
 
 describe("Keep Lowest Tests", () => {
-	// I don't know how to test things that are meant to be random.
+	it("should keep lowest 1", () => {
+		let results = Option.keepLowest(new Dice(4, 4), 1)
+		expect(results.total).to.equal(results.values[0]);
+	});
 
 	it("should keep lowest 2", () => {
-		console.log(Option.keepLowest(new Roll("4d4", "+"), 2));
+		let results = Option.keepLowest(new Dice(4, 4), 2)
+		expect(results.total).to.equal(results.values[0] + results.values[1]);
+	});
+
+	it("should keep lowest 4", () => {
+		let results = Option.keepLowest(new Dice(4, 6), 4)
+		expect(results.total).to.equal(results.values[0] + results.values[1] + results.values[2] + results.values[3]);
 	})
 });
