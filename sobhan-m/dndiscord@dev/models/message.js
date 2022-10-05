@@ -2,44 +2,6 @@ const Roll = require('./roll');
 const Dice = require('./dice');
 const Option = require('./option');
 
-const execute = (roll) => {
-	if (roll.option == undefined)
-	{
-		roll.results = Dice.rollDice(roll.dice);
-	}
-	else if (roll.option === "a")
-	{
-		roll.results = Option.advantage(roll.dice);
-	}
-	else if (roll.option === "d")
-	{
-		roll.results = Option.disadvantage(roll.dice);
-	}
-	else if (roll.option.match(/^kh\d+/))
-	{
-		let n = parseInt(roll.option.substring(2));
-		roll.results = Option.keepHighest(roll.dice, n);
-	}
-	else if (roll.option.match(/^kl\d+/))
-	{
-		let n = parseInt(roll.option.substring(2));
-		roll.results = Option.keepLowest(roll.dice, n);
-	}
-	else
-	{
-		throw "No Options Matched";
-	}
-
-	roll.total = roll.results.total;
-}
-
-const processMessage = (rollArray) => {
-	
-
-
-};
-
-
 module.exports = class Message {
 
 	constructor(message) {
@@ -80,24 +42,7 @@ module.exports = class Message {
 			results.rolls.push(new Roll(rolls[i], operators[i]));
 		}
 
-		results.rolls.forEach(roll => {
-			execute(roll);
-		})
-		results.total = results.rolls.reduce((total, roll) => {
-			if (roll.operator == "+")
-			{
-				return total + roll.total;
-			}
-			else 
-			{
-				return total - roll.total;
-			}
-		}, 0);
-
-		console.log(results);
-
-		return results;
-
+		return Roll.processRolls(results.rolls);
 	}
 
 	rollCharacterStats()
