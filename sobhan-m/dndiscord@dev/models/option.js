@@ -1,6 +1,5 @@
-const Roll = require("./roll");
+const Roll = require('./roll');
 const DiscordMessage = require('./discord-message');
-
 
 module.exports = class Option {
 

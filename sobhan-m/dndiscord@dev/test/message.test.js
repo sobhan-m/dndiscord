@@ -3,10 +3,10 @@ const assert = require('assert');
 const chai = require('chai');
 const expect = chai.expect;
 
-const testMessage1 = new Message("/r 1d20+1d4+6")
-const testMessage2 = new Message("/r 1d20+1d4 +6")
-
 describe("Message Class Tests", () => {
+	const testMessage1 = new Message("/r 1d20+1d4+6")
+	const testMessage2 = new Message("/r 1d20+1d4 +6")
+
 	it("should be '/r'", () => {
 		expect(testMessage1.command).to.equal("/r");
 	});
@@ -24,6 +24,16 @@ describe("Message Class Tests", () => {
 	});
 	it("should be '+6'", () => {
 		expect(testMessage2.arguments[1]).to.equal('+6');
+	});
+	
+});
+
+describe("Message Roll Dice Test", () => {
+
+	const message = new Message("/r 1d20:a+2d4:kh1-3");
+
+	it("should work", () => {
+		message.resolveCommand();
 	});
 	
 });

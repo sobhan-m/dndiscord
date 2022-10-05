@@ -32,23 +32,32 @@ describe("Argument Splitting Tests", () => {
 			operators: ["-", "+"]
 		});
 	});
+
+	it("should be [1d20:a,2d4:kh1,3], [+,+,+]", () => {
+		expect(Roll.formatArgument("1d20:a+2d4:kh1+3")).to.eql({
+			rolls: ["1d20:a", "2d4:kh1", "3"],
+			operators: ["+", "+", "+"]
+		});
+	});
+
+	
 });
 
 describe("Option Extracting Tests", () => {
-	it("should be []", () => {
-		expect(Roll.extractOptions("1d20")).to.eql([]);
+	it("should be undefined", () => {
+		expect(Roll.extractOptions("1d20")).to.eql(undefined);
 	});
 
-	it("should be [a]", () => {
-		expect(Roll.extractOptions("1d20:a")).to.eql(["a"]);
+	it("should be a", () => {
+		expect(Roll.extractOptions("1d20:a")).to.eql("a");
 	});
 
-	it("should be [d]", () => {
-		expect(Roll.extractOptions("1d20:d")).to.eql(["d"]);
+	it("should be d", () => {
+		expect(Roll.extractOptions("1d20:d")).to.eql("d");
 	});
 
-	it("should be [a, rr1,2]", () => {
-		expect(Roll.extractOptions("1d20:a:rr1,2")).to.eql(["a", "rr1,2"]);
+	it("should be kh1", () => {
+		expect(Roll.extractOptions("2d20:kh1")).to.eql("kh1");
 	});
 
 });

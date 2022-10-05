@@ -1,10 +1,9 @@
-
 module.exports = class Roll {
 
 	constructor(roll, operator = "+") {
 		this.roll = roll;
 		this.operator = operator;
-		this.options = Roll.extractOptions(roll);
+		this.option = Roll.extractOptions(roll);
 		this.dice = Roll.extractDiceData(roll);
 	}
 
@@ -22,8 +21,7 @@ module.exports = class Roll {
 	}
 
 	static extractOptions(roll) {
-		let options = roll.split(":").slice(1);
-		return options;
+		return roll.split(":").slice(1)[0];
 	}
 
 	static extractDiceData(roll) {
@@ -75,5 +73,4 @@ module.exports = class Roll {
 	{
 		return Math.floor(Math.random() * diceType + 1);
 	}
-
 };
