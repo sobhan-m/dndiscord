@@ -1,6 +1,6 @@
 const Roll = require('./roll');
 
-module.exports = class Message {
+module.exports = class Controller {
 
 	constructor(message) {
 		this.message = message.toString();
@@ -44,7 +44,7 @@ module.exports = class Message {
 	rollDice()
 	{
 		let totalArgument = this.arguments.join("");
-		let {rolls, operators} = Message.formatArgument(totalArgument);
+		let {rolls, operators} = Controller.formatArgument(totalArgument);
 		let results = {};
 		results.rolls = [];
 	
