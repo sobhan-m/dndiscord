@@ -1,6 +1,4 @@
 const Roll = require('./roll');
-const Dice = require('./dice');
-const Option = require('./option');
 
 module.exports = class Message {
 
@@ -8,6 +6,19 @@ module.exports = class Message {
 		this.message = message.toString();
 		this.command = message.split(" ")[0];
 		this.arguments = message.split(" ").slice(1);
+	}
+
+	static formatArgument(arg) {
+		let rolls = arg.split(/[\+-]+/).filter(roll => roll !== "");
+		let operators = arg.split(/[^\+-]+/).filter(op => op !== "");
+
+		// If "+" at the beginning is implicit.
+		if (operators.length == rolls.length - 1)
+		{
+			operators.unshift("+");
+		}
+
+		return {rolls: rolls, operators: operators};
 	}
 
 	resolveCommand()
@@ -33,7 +44,7 @@ module.exports = class Message {
 	rollDice()
 	{
 		let totalArgument = this.arguments.join("");
-		let {rolls, operators} = Roll.formatArgument(totalArgument);
+		let {rolls, operators} = Message.formatArgument(totalArgument);
 		let results = {};
 		results.rolls = [];
 	
