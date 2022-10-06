@@ -5,7 +5,7 @@ const lib = require('lib')({ token: process.env.STDLIB_SECRET_TOKEN });
 const Controller = require('../../../../models/controller');
 
 if (context.params.event.content.match(/^\/r/i)) {
-	const controller = new Controller(context.params.event.content);
+	const controller = new Controller(context.params.event.content, context);
 
 	console.log(`Message Sent: ${context.params.event.content}`);
 
