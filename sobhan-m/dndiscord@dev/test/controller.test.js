@@ -64,3 +64,11 @@ describe("Argument Splitting Tests", () => {
 		});
 	});
 });
+
+describe("Insult Tests", () => {
+	it("should be give me an insult", () => {
+		Controller.insult(insult => {
+			console.log(insult);
+		});
+	});
+});

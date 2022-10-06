@@ -1,4 +1,5 @@
 const lib = require('lib')({ token: process.env.STDLIB_SECRET_TOKEN });
+const https = require('https');
 
 const Roll = require('./roll');
 const DiscordMessage = require('./discord-message');
@@ -37,7 +38,7 @@ module.exports = class Controller {
 			case "/rhelp":
 				return this.help();
 			case "/rinsult":
-				return this.insult();results.push(execute());
+				return Controller.insult(insult => {return insult});
 			case "/raskdm":
 				return this.askDM();
 			default:
@@ -88,9 +89,27 @@ module.exports = class Controller {
 
 	}
 
-	insult()
+	/**
+	 * @param {*} cb A call back function that operates on the insult.
+	 */
+	static insult(cb) 
 	{
+		https.get('https://evilinsult.com/generate_insult.php?lang=en&type=json', (res) => {
+			let data = '';
 
+			res.on('data', (chunk) => {
+				data += chunk;
+			});
+
+			res.on('end', () => {
+				console.log(JSON.parse(data));
+				return cb(JSON.parse(data).insult);
+			});
+
+		}).on("error", (err) => {
+			console.log("Error: " + err.message);
+			return "Error. Couldn't find an insult. Sorry!";
+		});
 	}
 
 	askDM()
