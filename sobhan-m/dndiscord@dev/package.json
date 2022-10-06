@@ -3,13 +3,14 @@
   "author": "sobhan-m",
   "publish": false,
   "dependencies": {
-    "lib": "latest"
+    "lib": "latest",
+    "request": "^2.81.0"
   },
   "devDependencies": {
     "chai": "^4.3.6",
     "mocha": "^10.0.0"
   },
   "scripts": {
-	"test": "mocha"
+    "test": "mocha"
   }
 }
