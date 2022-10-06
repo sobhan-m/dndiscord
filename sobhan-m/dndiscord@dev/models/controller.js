@@ -29,7 +29,7 @@ module.exports = class Controller {
 		return {rolls: rolls, operators: operators};
 	}
 
-	resolveCommand()
+	resolveCommand(cb)
 	{
 		switch(this.command)
 		{
@@ -40,7 +40,7 @@ module.exports = class Controller {
 			case "/rhelp":
 				return this.help();
 			case "/rinsult":
-				return Controller.insult(insult => {return insult});
+				return Controller.insult(cb);
 			case "/raskdm":
 				return this.askDM();
 			default:
