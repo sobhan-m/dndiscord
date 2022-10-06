@@ -1,4 +1,7 @@
+const lib = require('lib')({ token: process.env.STDLIB_SECRET_TOKEN });
+
 const Roll = require('./roll');
+const DiscordMessage = require('./discord-message');
 
 module.exports = class Controller {
 
@@ -26,7 +29,7 @@ module.exports = class Controller {
 		switch(this.command)
 		{
 			case "/r":
-				return this.rollDice();
+				return `<@${context.params.event.author.id}> rolled: ` + DiscordMessage.rollDiceMessage(this.rollDice());
 			case "/rchar":
 				return this.rollCharacterStats();
 			case "/rhelp":

@@ -64,13 +64,3 @@ describe("Argument Splitting Tests", () => {
 		});
 	});
 });
-
-describe("Message Roll Dice Test", () => {
-
-	const controller = new Controller("/r 1d20:a+2d4:kh1-3");
-
-	it("should work", () => {
-		controller.resolveCommand();
-	});
-	
-});
