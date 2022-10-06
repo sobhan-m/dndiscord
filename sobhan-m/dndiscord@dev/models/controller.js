@@ -4,6 +4,7 @@ const Option = require('./option');
 const Dice = require('./dice');
 
 const responses = require('../helper/responses');
+const getInsult = require('../helper/insult');
 
 module.exports = class Controller {
 
@@ -27,7 +28,7 @@ module.exports = class Controller {
 		return {rolls: rolls, operators: operators};
 	}
 
-	resolveCommand()
+	async resolveCommand()
 	{
 		switch(this.command)
 		{
@@ -38,7 +39,7 @@ module.exports = class Controller {
 			case "/rhelp":
 				return this.help();
 			case "/rinsult":
-				return Controller.insult();
+				return await Controller.insult();
 			case "/raskdm":
 				return this.askDM();
 			default:
@@ -110,10 +111,9 @@ module.exports = class Controller {
 		return message;
 	}
 
-	static insult() 
+	static async insult() 
 	{
-		// TODO: Figure out how to implement this.
-		return "I'm not smart enough to come up with an insult. Give me some time.";
+		return await getInsult();
 	}
 
 	askDM()

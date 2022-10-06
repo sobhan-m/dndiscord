@@ -66,8 +66,9 @@ describe("Argument Splitting Tests", () => {
 });
 
 describe("Insult Tests", () => {
-	it("should be give me an insult", () => {
-		console.log(Controller.insult());
+	it("should be give me an insult", async () => {
+		let insult = await Controller.insult();
+		console.log(`Insult Test: ${insult}`);
 	});
 });
 

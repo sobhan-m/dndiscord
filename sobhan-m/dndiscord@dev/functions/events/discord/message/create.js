@@ -9,7 +9,7 @@ if (context.params.event.content.match(/^\/r/i)) {
 
 	console.log(`Message Sent: ${context.params.event.content}`);
 
-	let result = controller.resolveCommand();
+	let result = await controller.resolveCommand();
 
 	console.log(result);
 
