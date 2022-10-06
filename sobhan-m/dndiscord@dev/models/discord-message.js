@@ -155,35 +155,10 @@ module.exports = class DiscordMessage {
 		return results;
 	}
 	
-	// {
-	// 	rolls: [
-	// 	  Roll {
-	// 		roll: '1d20:a',
-	// 		operator: '+',
-	// 		option: 'a',
-	// 		dice: [Dice],
-	// 		results: [Object],
-	// 		total: 17
-	// 	  },
-	// 	  Roll {
-	// 		roll: '2d4:kh1',
-	// 		operator: '+',
-	// 		option: 'kh1',
-	// 		dice: [Dice],
-	// 		results: [Object],
-	// 		total: 2
-	// 	  },
-	// 	  Roll {
-	// 		roll: '3',
-	// 		operator: '-',
-	// 		option: undefined,
-	// 		dice: [Dice],
-	// 		results: [Object],
-	// 		total: 3
-	// 	  }
-	// 	],
-	// 	total: 16
-	//   }
+	static characterRowMessage(optionResults)
+	{
+		return `Rolls: ${DiscordMessage.code(optionResults.values.join())}. Total: ${DiscordMessage.code(optionResults.total)}`;
+	}
 
 
 }

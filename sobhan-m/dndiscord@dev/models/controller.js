@@ -2,6 +2,8 @@ const lib = require('lib')({ token: process.env.STDLIB_SECRET_TOKEN });
 
 const Roll = require('./roll');
 const DiscordMessage = require('./discord-message');
+const Option = require('./option');
+const Dice = require('./dice');
 
 module.exports = class Controller {
 
@@ -31,7 +33,7 @@ module.exports = class Controller {
 			case "/r":
 				return `<@${context.params.event.author.id}> rolled: ` + DiscordMessage.rollDiceMessage(this.rollDice());
 			case "/rchar":
-				return this.rollCharacterStats();
+				return `<@${context.params.event.author.id}>'s character ability scores:\n` + this.rollCharacterStats();
 			case "/rhelp":
 				return this.help();
 			case "/rinsult":
@@ -61,6 +63,23 @@ module.exports = class Controller {
 
 	rollCharacterStats()
 	{
+		let totalArgument = this.arguments.join("");
+
+		let n = 6;
+
+		if (! isNaN(parseInt(totalArgument)))
+		{
+			n = parseInt(totalArgument);
+		}
+
+		let message = "";
+
+		for (let i = 0; i < n; ++i)
+		{
+			message += DiscordMessage.characterRowMessage(Option.keepHighest(new Dice(4,6),3)) + "\n";
+		}
+
+		return message;
 
 	}
 

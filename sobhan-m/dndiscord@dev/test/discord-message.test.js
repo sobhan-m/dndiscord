@@ -511,3 +511,15 @@ describe("Roll Dice Message Tests", () => {
 	});
 	
 });
+
+describe("Character Row Message Tests", () => {
+	it("should be Rolls: `1,3,5,6`. Total: `14`", () => {
+		let results = {
+			total: 14,
+			values: [1,3,5,6]
+		}
+		
+		expect(DiscordMessage.characterRowMessage(results)).to.equal("Rolls: `1,3,5,6`. Total: `14`");
+	});
+	
+});
