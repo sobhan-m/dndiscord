@@ -1,4 +1,3 @@
-const lib = require('lib')({ token: process.env.STDLIB_SECRET_TOKEN });
 const https = require('https');
 
 const Roll = require('./roll');
@@ -10,10 +9,11 @@ const responses = require('../helper/responses');
 
 module.exports = class Controller {
 
-	constructor(message) {
+	constructor(message, context=undefined) {
 		this.message = message.toString();
 		this.command = message.split(" ")[0];
 		this.arguments = message.split(" ").slice(1);
+		this.context = context;
 	}
 
 	static formatArgument(arg) {
@@ -34,9 +34,9 @@ module.exports = class Controller {
 		switch(this.command)
 		{
 			case "/r":
-				return `<@${context.params.event.author.id}> rolled: ` + DiscordMessage.rollDiceMessage(this.rollDice());
+				return `<@${this.context.params.event.author.id}> rolled: ` + DiscordMessage.rollDiceMessage(this.rollDice());
 			case "/rchar":
-				return `<@${context.params.event.author.id}>'s character ability scores:\n` + this.rollCharacterStats();
+				return `<@${this.context.params.event.author.id}>'s character ability scores:\n` + this.rollCharacterStats();
 			case "/rhelp":
 				return this.help();
 			case "/rinsult":
