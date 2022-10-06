@@ -6,6 +6,8 @@ const DiscordMessage = require('./discord-message');
 const Option = require('./option');
 const Dice = require('./dice');
 
+const responses = require('../helper/responses');
+
 module.exports = class Controller {
 
 	constructor(message) {
@@ -135,7 +137,7 @@ module.exports = class Controller {
 
 	askDM()
 	{
-		
+		return responses[Dice.randomize(responses.length)-1];
 	}
 
 

@@ -72,3 +72,10 @@ describe("Insult Tests", () => {
 		});
 	});
 });
+
+describe("Ask DM Tests", () => {
+	it("should be give me a response", () => {
+		let controller = new Controller("/raskdm");
+		console.log(controller.askDM());
+	});
+});
