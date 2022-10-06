@@ -47,5 +47,6 @@ module.exports = [
 	"Yes. Now are you going to insight check me?",
 	"No. I rolled a NAT 20 deception on that one. ",
 	"If you have to ask, then I can't help you. ",
-	"Do you really need to ask that?"
+	"Do you really need to ask that?",
+	"No shit Sherlock."
 ]
