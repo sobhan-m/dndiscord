@@ -43,7 +43,6 @@ module.exports = class Controller {
 				return this.askDM();
 			default:
 				console.log("Message.resolveCommand(): Received invalid command.");
-
 		}
 	}
 
@@ -86,7 +85,29 @@ module.exports = class Controller {
 
 	help()
 	{
+		let message = "";
 
+		// /r
+		message += "`/r`: Used to make a roll. Such as `/r 1d20:a+1d4+2`.\n";
+		message += "-- `:a`: An option that rolls with advantage.\n";
+		message += "-- `:d`: An option that rolls with disadvantage.\n";
+		message += "-- `:kh[n]`: An option that keeps the highest [n] results.\n";
+		message += "-- `:kl[n]`: An option that keeps the lowest [n] results.\n";
+
+		// /rchar
+		message += "`/rchar [n]`: Used to roll characters with the default roll 4d6 keep highest 3.\n";
+		message += "-- `[n]`: Determines how many times it rolls 4d6. The default is 6 times, one for each stat.\n";
+		
+		// /rhelp
+		message += "`/rhelp`: Returns tips on how to use the various commands.\n";
+
+		// /rinsult
+		message += "`/rinsult`: Randomly retrieves an insult in case you can't come up with something for Viscious Mockery.\n";
+
+		// /raskdm
+		message += "`/raskdm`: Receive a response from the bot, as if it were the DM. Results may vary.\n"
+
+		return message;
 	}
 
 	/**
