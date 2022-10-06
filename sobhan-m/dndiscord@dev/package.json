@@ -3,8 +3,7 @@
   "author": "sobhan-m",
   "publish": false,
   "dependencies": {
-    "lib": "latest",
-    "request": "^2.81.0"
+    "lib": "latest"
   },
   "devDependencies": {
     "chai": "^4.3.6",
