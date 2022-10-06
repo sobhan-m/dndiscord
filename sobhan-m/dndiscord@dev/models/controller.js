@@ -27,7 +27,7 @@ module.exports = class Controller {
 		return {rolls: rolls, operators: operators};
 	}
 
-	async resolveCommand(cb)
+	resolveCommand()
 	{
 		switch(this.command)
 		{
@@ -110,9 +110,6 @@ module.exports = class Controller {
 		return message;
 	}
 
-	/**
-	 * @param {*} cb A call back function that operates on the insult.
-	 */
 	static insult() 
 	{
 		// TODO: Figure out how to implement this.
