@@ -11,7 +11,7 @@ if (context.params.event.content.match(/^\/r/i)) {
 
 	await lib.discord.channels['@0.3.0'].messages.create({
 		channel_id: context.params.event.channel_id,
-		content: controller.resolveCommand(insult => insult),
+		content: controller.resolveCommand(),
 		message_reference: {
 			message_id: context.params.event.id
 		}
