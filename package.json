@@ -1,12 +1,12 @@
 {
-  "name": "rolly",
-  "author": "sobhan-m",
-  "publish": false,
-  "scripts": {
-    "test": "mocha"
-  },
-  "dependencies": {
-    "discord.js": "^14.14.1",
-    "dotenv": "^16.4.5"
-  }
+	"name": "rolly",
+	"author": "sobhan-m",
+	"publish": false,
+	"scripts": {
+		"start": "node index.js"
+	},
+	"dependencies": {
+		"discord.js": "^14.14.1",
+		"dotenv": "^16.4.5"
+	}
 }
